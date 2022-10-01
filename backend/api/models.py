@@ -15,7 +15,7 @@ class User (models.Model):
     group = models.IntegerField()
     course = models.CharField(max_length=50)
     engaged_status = models.CharField(max_length=1000000)
-    time = models.CharField(max_length=100000)
+    time = models.IntegerField()
     fps = models.CharField(max_length=1000)
     session = models.DateTimeField(auto_now=True)
 
@@ -36,6 +36,7 @@ class User (models.Model):
             mega_list[id]['group'] = i.group
             converted_engaged_status = User.flattenFrames(i.engaged_status.strip('][').split(', '), i.fps)
             mega_list[id]['engaged_status'] = converted_engaged_status
+            mega_list[id]['duration'] = i.time
             mega_list[id]['session'] = i.session
             id += 1
             

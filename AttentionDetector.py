@@ -9,7 +9,22 @@ import imutils
 import time
 import dlib
 import cv2
+import streamlit as st
 import requests
+
+global name, course, group, module, duration
+
+def post(name, course, engaged_status, time, fps, module, group):
+    json = {
+        "name": name,
+        "course": course,
+        "module": module,
+        "group": group,
+        "engaged_status": engaged_status,
+        "time": time,
+        "fps": fps,
+    }
+    requests.post('http://127.0.0.1:8000/api/v1/engagement/upload', json=json)
 
 def eye_aspect_ratio(eye):
 	# compute the euclidean distances between the two sets of
@@ -25,11 +40,6 @@ def eye_aspect_ratio(eye):
 	return ear
 
 def main():
-    name = input("Enter your name: ")
-    course = input("Enter your course: ")
-    module = input("Enter your module: ")
-    group = input("Enter your group: ")
-
     # construct the argument parse and parse the arguments
     ap = argparse.ArgumentParser()
     ap.add_argument("-p", "--shape-predictor", required=True,
@@ -74,7 +84,6 @@ def main():
     disengaged = False
     LOOKDOWN_COUNTER = 0
     start = 0
-    end = 0
     engaged_status = []
     while True:
         # if this is a file video stream, then we need to check if
@@ -111,14 +120,13 @@ def main():
 
             
             if EYE_AR_THRESH == 1:
-                print(_counter)
                 if _counter > 0:
                     _sum += ear
                     
                     _counter -= 1
                 else:
                     EYE_AR_THRESH = _sum / int(10 * fps) * 0.6
-                    start = time.time()
+                    start = int(time.time())
             
             if _counter == 0:       
                 # compute the convex hull for the left and right eye, then
@@ -206,9 +214,8 @@ def main():
         key = cv2.waitKey(1) & 0xFF
     
         # if the `q` key was pressed, break from the loop
-        if key == ord("q"):
-            end = time.time()
-            post(name, course, engaged_status, end - start, fps, module, group)
+        if int(time.time()) - start == duration * 60:
+            post(name, course, engaged_status, duration * 60, fps, module, group)
             break
 
     # do a bit of cleanup
@@ -229,17 +236,14 @@ def getFPS():
     video.release()
     return float(num_frames / seconds)
 
-def post(name, course, engaged_status, time, fps, module, group):
-    json = {
-        "name": name,
-        "course": course,
-        "module": module,
-        "group": group,
-        "engaged_status": engaged_status,
-        "time": time,
-        "fps": fps,
-    }
-    requests.post('http://127.0.0.1:8000/api/v1/engagement/upload', json=json)
+name = st.text_input("Name: ")
+course = st.text_input("Course: ")
+group = st.text_input("Group: ")
+module = st.text_input("Module: ")
+duration = st.slider("Duration in minutes: ", 1, 120, 1)
+submit = st.button("Submit")
 
-if __name__ == '__main__':
+if submit:
     main()
+    
+st.stop()
