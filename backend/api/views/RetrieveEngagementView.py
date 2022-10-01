@@ -11,6 +11,10 @@ class RetrieveEngagementView(APIView):
         course = request.query_params.get('course')
         module = request.query_params.get('module')
         group = request.query_params.get('group')
+
+        if group:
+            group = int(group)
+        
         queryList = User.queryEngagedStatus(course, group, module, name)
-        payload = {"engaged_status": queryList}
+        payload = {"payload": queryList}
         return Response(payload)
