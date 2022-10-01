@@ -32,11 +32,13 @@ def main():
         help="path to input video file")
     args = vars(ap.parse_args())
 
+    fps = getFPS()
+
     # define two constants, one for the eye aspect ratio to indicate
     # blink and then a second constant for the number of consecutive
     # frames the eye must be below the threshold
-    EYE_AR_THRESH = 0.15
-    EYE_AR_CONSEC_FRAMES = 20
+    EYE_AR_THRESH = 0.3
+    EYE_AR_CONSEC_FRAMES = 5 * fps
     # initialize the frame counters and the total number of blinks
     COUNTER = 0
     TOTAL = 0
@@ -59,6 +61,8 @@ def main():
     time.sleep(1.0)
 
     # loop over frames from the video stream
+    # variable for engagement
+    disengaged = False
     while True:
         # if this is a file video stream, then we need to check if
         # there any more frames left in the buffer to process
@@ -74,9 +78,9 @@ def main():
         rects = detector(gray, 0)
 
         # loop over the face detections
+        
+        
         for rect in rects:
-            # variable for engagement
-            disengaged = False
             # determine the facial landmarks for the face region, then
             # convert the facial landmark (x, y)-coordinates to a NumPy
             # array
@@ -98,20 +102,25 @@ def main():
             cv2.drawContours(frame, [rightEyeHull], -1, (0, 255, 0), 1)
             # check to see if the eye aspect ratio is below the blink
             # threshold, and if so, increment the blink frame counter
-            if ear < EYE_AR_THRESH:
-                COUNTER += 1
+            # print(ear, EYE_AR_THRESH)
+            # if (ear < EYE_AR_THRESH and COUNTER < E:
+            #     COUNTER += 1
             # otherwise, the eye aspect ratio is not below the blink
             # threshold
-            else:
-                # if the eyes were closed for a sufficient number of
-                # then increment the total number of blinks
-                if COUNTER >= EYE_AR_CONSEC_FRAMES:
-                    TOTAL += 1
-                    disengaged = True
-                # reset the eye frame counter
-                elif COUNTER < EYE_AR_CONSEC_FRAMES:
-                    disengaged = False
-                COUNTER = 0
+
+            # if the eyes were closed for a sufficient number of
+            # then increment the total number of blinks
+            if COUNTER >= EYE_AR_CONSEC_FRAMES:
+                ##TOTAL += 1
+                disengaged = True
+                TOTAL += 1
+                if ear >= EYE_AR_THRESH:
+                    COUNTER = 0
+            # reset the eye frame counter
+            elif COUNTER < EYE_AR_CONSEC_FRAMES:
+                COUNTER += 1
+                disengaged = False
+                
             # draw the total number of blinks on the frame along with
             # the computed eye aspect ratio for the frame
             #cv2.putText(frame, "Blinks: {}".format(TOTAL), (10, 30),
@@ -125,6 +134,8 @@ def main():
                     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
             cv2.putText(frame, "EAR: {:.2f}".format(ear), (300, 30),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+            cv2.putText(frame, "Total: {}".format(TOTAL/fps),(10, 300),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
         # show the frame
         cv2.imshow("Frame", frame)
         key = cv2.waitKey(1) & 0xFF
@@ -136,6 +147,24 @@ def main():
     # do a bit of cleanup
     cv2.destroyAllWindows()
     vs.stop()
+
+
+def getFPS():
+    video = cv2.VideoCapture(0)
+
+    num_frames = 60
+
+    start = time.time()
+
+    for i in range(0, num_frames):
+        rst, frame = video.read()
+
+    end = time.time()
+
+    seconds = end - start
+    video.release()
+
+    return float(num_frames / seconds)
 
 if __name__ == '__main__':
     main()
