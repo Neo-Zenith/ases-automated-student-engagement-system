@@ -236,6 +236,10 @@ def getFPS():
     video.release()
     return float(num_frames / seconds)
 
+html_string = """
+<h1> Welcome to Engageder </h1>
+"""
+st.markdown(html_string, unsafe_allow_html=True)
 name = st.text_input("Name: ")
 course = st.text_input("Course: ")
 group = st.text_input("Group: ")
