@@ -30,6 +30,8 @@ def main():
     name = input("Enter your name: ")
     email = input("Enter your email: ")
     course = input("Enter your course: ")
+    module = input("Enter your module: ")
+    group = input("Enter your group: ")
     gender = input("Enter your gender (0 for Male, 1 for Female): ")
 
     # construct the argument parse and parse the arguments
@@ -210,7 +212,7 @@ def main():
         # if the `q` key was pressed, break from the loop
         if key == ord("q"):
             end = time.time()
-            post(name, course, gender, email, engaged_status, end - start, fps)
+            post(name, course, gender, email, engaged_status, end - start, fps, module, group)
             break
 
     # do a bit of cleanup
@@ -231,17 +233,19 @@ def getFPS():
     video.release()
     return float(num_frames / seconds)
 
-def post(name, course, gender, email, engaged_status, time, fps):
+def post(name, course, gender, email, engaged_status, time, fps, module, group):
     json = {
         "name": name,
         "course": course,
+        "module": module,
+        "group": group,
         "gender": int(gender),
         "engaged_status": engaged_status,
         "email": email,
         "time": time,
         "fps": fps,
     }
-    r = requests.post('http://127.0.0.1:8000/api/engagement', json=json)
+    requests.post('http://127.0.0.1:8000/api/v1/engagement/upload', json=json)
 
 if __name__ == '__main__':
     main()

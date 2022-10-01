@@ -3,12 +3,14 @@ from rest_framework import generics, status
 from ..models import User
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from ..serializers import EngagementViewSerializer
 
 # Create your views here.
-class GetEngagementView(APIView):
+class RetrieveEngagementView(APIView):
     def get(self, request):
+        name = request.query_params.get('name')
         course = request.query_params.get('course')
-        queryList = User.queryEngagedStatus(course)
+        module = request.query_params.get('module')
+        group = request.query_params.get('group')
+        queryList = User.queryEngagedStatus(course, group, module, name)
         payload = {"engaged_status": queryList}
         return Response(payload)
