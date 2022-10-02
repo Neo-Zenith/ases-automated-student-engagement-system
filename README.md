@@ -16,15 +16,11 @@ If teachers knew how engaged and focused their students are in class, they can i
 * Putting more emphasis on harder topics
 
 ## ❓ Problem Statement
-<pre>
-How might we harness AI to help teachers determine the level of engagement of students in online learning?
-</pre>
+> How might we harness AI to help teachers determine the level of engagement of students in online learning?
 
 ## 💡 Solution
-What is the AI-based solution we are offering?
-<pre>
-A computer-vision based system that tracks students level of engagement in real-time during an online class session.
-</pre>
+> A computer-vision based system that tracks students level of engagement in real-time during an online class session.
+
 Comparing to **traditional image processing method** which is *complex* and required certqain combination of models training, our solution using `Eye Aspect Ratio (EAR)` which is more more *elegant, efficient* and *easy* to implement* as it just requires simple calculation based on the ratio of distances between Facial Landmarks of eyes.
 
 ## ⚡ Technology of Our Solution
