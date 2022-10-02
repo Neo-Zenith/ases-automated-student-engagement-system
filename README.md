@@ -28,7 +28,7 @@ A computer-vision based system that tracks students level of engagement in real-
 Comparing to **traditional image processing method** which is *complex* and required certqain combination of models training, our solution using `Eye Aspect Ratio (EAR)` which is more more *elegant, efficient* and *easy* to implement* as it just requires simple calculation based on the ratio of distances between Facial Landmarks of eyes.
 
 ## ⚡ Technology of Our Solution
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" /> <img src="https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white" /> <img src="https://img.shields.io/badge/dlib-399639?style=for-the-badge&logo=dlib" /> <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white" /> 
+<img src="https://img.shields.io/badge/streamlit-bd4043?style=for-the-badge&logo=streamlit&logoColor=white" /> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" /> <img src="https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white" /> <img src="https://img.shields.io/badge/dlib-399639?style=for-the-badge&logo=dlib" /> <img src="https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white" /> <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white" /> 
 
 #### (A) Method:
 * [OpenCV](https://opencv.org/) with [dlib](https://pypi.org/project/dlib/) as our main machine learning libraries.
@@ -52,17 +52,26 @@ Eyes closed: $\text{EAR} = 0$
 * For the first 5 seconds, we calibrate the average of EAR of the student.
 * Sets a threshold of **90%** of average EAR to signify closed eyes.
 
+#### (C) API:
+* Storing and querying of student's engagement level is done using API built under [Django's REST framework](https://www.django-rest-framework.org)
+* Data is stored on an SQLite database.
+
+#### (D) Interface:
+* Student-side interface is built using `streamlit`.
+* Professor-side interface is built using Django's template engine.
 
 ## 👨‍🎓 How It Woks for Students
 Key in relevent info via `Welcome to aSES` page, the system can be run on the students devices via USB/webcame/Raspberry Pi camera and track their engagements during online classes.
+![image](https://user-images.githubusercontent.com/77436548/193457711-940e7038-0d65-4e12-aff4-63327be6cf06.png)
 * The videos are not being recorded, only data such as `Engagement of student` in binary form will be saved into database
 * After class, the results will be uploaded to cloud database.
     
 * Based on Eye Aspect Ratio measurement and face detection 
     * The student is categorised as engaged or disengaged every second based on their eye movements
-    * `Disengaged` —— when the student’s face is undetected OR their eyes are closed/ partially closed for a fixed period of time (2 seconds).
+    ![image](https://user-images.githubusercontent.com/77436548/193460332-eca38717-5c85-4b14-a692-ca8125a2e34d.png)
 
-![image](https://user-images.githubusercontent.com/77436548/193457711-940e7038-0d65-4e12-aff4-63327be6cf06.png)
+    * `Disengaged` —— when the student’s face is undetected OR their eyes are closed/ partially closed for a fixed period of time (2 seconds).
+    ![image](https://user-images.githubusercontent.com/77436548/193460299-2d887644-c463-4606-b676-c9ec7506021a.png)
 
 ## 👨‍🏫 How It Woks for Professor
 Receive information regarding student engagement via `Automated Student Engagement System (aSES)` , where they get feedback on the amount of time students spent disengaged and the engagement level over time by querying their names, course, module, group.
@@ -105,3 +114,19 @@ Receive information regarding student engagement via `Automated Student Engageme
 Below are some links that we have used as references throughout the project:
 * https://iblnews.org/a-survey-shows-that-many-college-students-struggle-to-maintain-focus-and-discipline-in-distance-learning/
 * https://pyimagesearch.com/2017/04/24/eye-blink-detection-opencv-python-dlib/
+
+<hr />
+
+## 💥 How to Use
+
+1.   Begin by cloning this repository to your working directory:
+```
+git clone https://github.com/Neo-Zenith/MLDA-Deep-Learning-Week.git
+```
+
+2.   Run `setup.bat`. This will install Python virtual environment and all the dependcies required.
+     * Note that installation of `dlib` will take some time. It is normal that your CPU and/or RAM usage will spike to 100% during this period.
+
+3.   Run `server.bat` to initialize the server.
+
+4.   Run `client.bat` to initialize the client application.
