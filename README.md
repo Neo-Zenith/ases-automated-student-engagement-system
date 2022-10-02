@@ -1,6 +1,5 @@
 # Automated Student Engagement System (aSES)
-
-[COOL BANNER]
+![ases-banner](https://user-images.githubusercontent.com/77436548/193458047-a42b20fd-16f5-45e3-8d0c-4aa80e502cd8.gif)
 
 ## Background
 > *"The Smart Nation is an initiative by the Government of Singapore to harness Infocomm technologies, networks and big data to create tech-enabled solutions."* 
