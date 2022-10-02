@@ -25,6 +25,7 @@ What is the AI-based solution we are offering?
 <pre>
 A computer vision based system that tracks students level of engagement in real-time during an online class session.
 </pre>
+Comparing to **traditional image processing method** which is *complex* and required certqain combination of models training, our solution using `Eye Aspect Ratio (EAR)` which is more more *elegant, efficient* and *easy* to implement* as it just requires simple calculation based on the ratio of distances between Facial Landmarks of eyes.
 
 ## Technology of Our Solution
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" /> <img src="https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white" /> <img src="https://img.shields.io/badge/dlib-399639?style=for-the-badge&logo=dlib" /> <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white" /> 
@@ -53,16 +54,20 @@ Eyes closed: $\text{EAR} = 0$
 
 
 ## How It Woks
-   * Based on Eye Aspect Ratio measurement and face detection 
-       * The student is categorised as engaged or disengaged based on their eye movements
-       >   `Disengaged` => when the student’s face is undetected OR their eyes are closed/ partially closed for a fixed period of time
+* **Student:** Key in relevent info via `Welcome to aSES` page, the system can be run on the students devices via USB/webcame/Raspberry Pi camera and track their engagements during online classes. <br>
+![image](https://user-images.githubusercontent.com/77436548/193457711-940e7038-0d65-4e12-aff4-63327be6cf06.png)
+    * (```diff - **Disclaimer:** ``` The videos are not being recorded, only data such as `Engagement of student` in binary form will be saved into database)
+    * After class, the results will be uploaded to cloud database.
+    
+    * Based on Eye Aspect Ratio measurement and face detection 
+        * The student is categorised as engaged or disengaged every second based on their eye movements
+        >   `Disengaged` => when the student’s face is undetected OR their eyes are closed/ partially closed for a fixed period of time (2 seconds).
 
-   * **Student:** Key in relevent info via `Welcome to aSES` page, the system can be run on the students devices during online classes. <br>
-   ![image](https://user-images.githubusercontent.com/77436548/193457711-940e7038-0d65-4e12-aff4-63327be6cf06.png)
-       * (The videos are not being recorded, only data such as `Engagement of student` in binary form will be saved into database)
-
-   * **Teachers:** Receive information regarding student engagement via `Automated Student Engagement System (aSES)` , where they get feedback on the amount of time students spent disengaged and the engagement level over time in the form of a graph.
-   ![image](https://user-images.githubusercontent.com/77436548/193457776-23ec4986-d287-4a6d-9f6f-f019a73536b7.png) ![image](https://user-images.githubusercontent.com/77436548/193457791-ed37115d-c3af-4c38-88a2-ff7eb0e5edcd.png)
+* **Teachers:** Receive information regarding student engagement via `Automated Student Engagement System (aSES)` , where they get feedback on the amount of time students spent disengaged and the engagement level over time by querying their names, course, module, group.
+    * Category:
+        * Individual student (by querying the student's matriculation number)
+        * The entire class (by leaving matriculation number section blank)
+![image](https://user-images.githubusercontent.com/77436548/193457776-23ec4986-d287-4a6d-9f6f-f019a73536b7.png) ![image](https://user-images.githubusercontent.com/77436548/193457791-ed37115d-c3af-4c38-88a2-ff7eb0e5edcd.png)
 
 
 ## Challenges
