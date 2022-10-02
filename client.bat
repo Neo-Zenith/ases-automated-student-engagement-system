@@ -1,0 +1,1 @@
+powershell -noexit "& "".\client.ps1"""

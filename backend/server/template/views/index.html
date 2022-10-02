@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Simple registration form</title>
+    <title>Simple form</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <style>
@@ -133,11 +133,10 @@
   <body>
     <div class="main-block">
         <h1>Welcome to [INSERT WEIRD NAME]</h1>
-      <form method="GET" action="http://127.0.0.1:8000/api/v1/engagement/retrieve">
+      <form method="POST" action="http://127.0.0.1:8000/result/">
+        {% csrf_token %}
         <hr>
         <hr>
-        <label id="icon" for="name"><i class="fas fa-user"></i></label>
-        <input type="text" name="name" placeholder="Name" required><br/>
         <label id="icon" for="name"><i class="fas fa-school"></i></label>
         <input type="text" name="course" placeholder="Course" required><br/>
         <label id="icon" for="name"><i class="fas fa-book"></i></label>

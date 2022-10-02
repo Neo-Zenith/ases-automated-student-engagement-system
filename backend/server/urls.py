@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from server.template.index import index
+from server.template.index import returngraph
 
 urlpatterns = [
     path('',index,name="home"),
+    path('result/',returngraph,name="returngraph"),
     path('admin/', admin.site.urls),
     path('api/', include("api.urls")),
 ]
