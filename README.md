@@ -21,7 +21,7 @@ If teachers knew how engaged and focused their students are in class, they can i
 ## 💡 Solution
 > A computer-vision based system that tracks students level of engagement in real-time during an online class session.
 
-Comparing to **traditional image processing method** which is *complex* and required certqain combination of models training, our solution using `Eye Aspect Ratio (EAR)` which is more more *elegant, efficient* and *easy* to implement* as it just requires simple calculation based on the ratio of distances between Facial Landmarks of eyes.
+Comparing to **traditional image processing method** which is *complex* and required certain combination of models training, our solution using `Eye Aspect Ratio (EAR)` which is more more *elegant, efficient* and *easy* to *implement* as it just requires simple calculation based on the ratio of distances between Facial Landmarks of eyes.
 
 ## ⚡ Technology of Our Solution
 <img src="https://img.shields.io/badge/streamlit-bd4043?style=for-the-badge&logo=streamlit&logoColor=white" /> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" /> <img src="https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white" /> <img src="https://img.shields.io/badge/dlib-399639?style=for-the-badge&logo=dlib" /> <img src="https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white" /> <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white" /> 
@@ -41,7 +41,7 @@ Comparing to **traditional image processing method** which is *complex* and requ
 > $$EAR = \frac{\parallel{p_2-p_6}\parallel + \parallel{p_3-p_5}\parallel}{2||p_1-p_4||}$$
 > * **Numerator:** Distance between the vertical eye landmarks
 > * **Denominator:** Distance between the horizontal eye landmarks
-(tiwce the Denominator because there is only one set of horizontal points but two sets of vertical points)
+(twice the Denominator because there is only one set of horizontal points but two sets of vertical points)
 
 * Eyes open:  $\text{EAR} \approx \text{constant}$ <br>
 Eyes closed: $\text{EAR} = 0$
