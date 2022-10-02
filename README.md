@@ -1,7 +1,7 @@
 # Automated Student Engagement System (aSES)
 ![ases-banner](https://user-images.githubusercontent.com/77436548/193458047-a42b20fd-16f5-45e3-8d0c-4aa80e502cd8.gif)
 
-## Background
+## 🗺️ Background
 > *"The Smart Nation is an initiative by the Government of Singapore to harness Infocomm technologies, networks and big data to create tech-enabled solutions."* 
  
 In this Hackathon, we aim to develop AI models that help to solve industrial or social problems in the new stage of social development.
@@ -15,19 +15,19 @@ If teachers knew how engaged and focused their students are in class, they can i
 * Adjusting their teaching pace
 * Putting more emphasis on harder topics
 
-## Problem Statement
+## ❓ Problem Statement
 <pre>
 How might we harness AI to help teachers determine the level of engagement of students in online learning?
 </pre>
 
-## Solution
+## 💡 Solution
 What is the AI-based solution we are offering?
 <pre>
-A computer vision based system that tracks students level of engagement in real-time during an online class session.
+A computer-vision based system that tracks students level of engagement in real-time during an online class session.
 </pre>
 Comparing to **traditional image processing method** which is *complex* and required certqain combination of models training, our solution using `Eye Aspect Ratio (EAR)` which is more more *elegant, efficient* and *easy* to implement* as it just requires simple calculation based on the ratio of distances between Facial Landmarks of eyes.
 
-## Technology of Our Solution
+## ⚡ Technology of Our Solution
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" /> <img src="https://img.shields.io/badge/opencv-%23white.svg?style=for-the-badge&logo=opencv&logoColor=white" /> <img src="https://img.shields.io/badge/dlib-399639?style=for-the-badge&logo=dlib" /> <img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white" /> 
 
 #### (A) Method:
@@ -53,47 +53,56 @@ Eyes closed: $\text{EAR} = 0$
 * Sets a threshold of `90%` of average EAR to signify closed eyes.
 
 
-## How It Woks
-* **Student:** Key in relevent info via `Welcome to aSES` page, the system can be run on the students devices via USB/webcame/Raspberry Pi camera and track their engagements during online classes. <br>
-![image](https://user-images.githubusercontent.com/77436548/193457711-940e7038-0d65-4e12-aff4-63327be6cf06.png)
-    * (```diff - **Disclaimer:** ``` The videos are not being recorded, only data such as `Engagement of student` in binary form will be saved into database)
-    * After class, the results will be uploaded to cloud database.
+## 👨‍🎓 How It Woks for Students
+Key in relevent info via `Welcome to aSES` page, the system can be run on the students devices via USB/webcame/Raspberry Pi camera and track their engagements during online classes.
+* The videos are not being recorded, only data such as `Engagement of student` in binary form will be saved into database
+* After class, the results will be uploaded to cloud database.
     
-    * Based on Eye Aspect Ratio measurement and face detection 
-        * The student is categorised as engaged or disengaged every second based on their eye movements
-        >   `Disengaged` => when the student’s face is undetected OR their eyes are closed/ partially closed for a fixed period of time (2 seconds).
+* Based on Eye Aspect Ratio measurement and face detection 
+    * The student is categorised as engaged or disengaged every second based on their eye movements
+    * `Disengaged` —— when the student’s face is undetected OR their eyes are closed/ partially closed for a fixed period of time (2 seconds).
 
-* **Teachers:** Receive information regarding student engagement via `Automated Student Engagement System (aSES)` , where they get feedback on the amount of time students spent disengaged and the engagement level over time by querying their names, course, module, group.
-    * Category:
-        * Individual student (by querying the student's matriculation number)
-        * The entire class (by leaving matriculation number section blank)
+![image](https://user-images.githubusercontent.com/77436548/193457711-940e7038-0d65-4e12-aff4-63327be6cf06.png)
+
+## 👨‍🏫 How It Woks for Professor
+Receive information regarding student engagement via `Automated Student Engagement System (aSES)` , where they get feedback on the amount of time students spent disengaged and the engagement level over time by querying their names, course, module, group.
+* Category:
+    * Individual student (by querying the student's matriculation number)
+    * The entire class (by leaving matriculation number section blank)
+        
 ![image](https://user-images.githubusercontent.com/77436548/193457776-23ec4986-d287-4a6d-9f6f-f019a73536b7.png) ![image](https://user-images.githubusercontent.com/77436548/193457791-ed37115d-c3af-4c38-88a2-ff7eb0e5edcd.png)
 
 
-## Challenges
+## 🚫 Challenges
 What are the challenges we faced when developing the solution?
 * Cloud-based database is not free for this Hackathon.
-* Dataset specific to our project's aim is not accessible due to privacy concerns.
+* Public datasets specific to our project's aim is not accessible due to privacy concerns.
 
-## Accomplishments
-What are our accomplishments from building our solution?
+## 🥇 Accomplishments
+* Successfully developed a computer-vision based AI model under 72 hours using [OpenCV](https://opencv.org/) and [dlib](https://pypi.org/project/dlib/).
+* Successfully developed a simple fullstack application for our system using Django and JavaScript.
 
-## Future Ahead
-What are the future plans for our solution?
+## 🔮 Future Ahead
 * Eye detection algorithm can be improved for greater accuracy
 * Presentation of live statistic to teachers when class ongoing, and use AI for recommendation on how teachers should react 
 * Dependencies can be built into a client program for easier installation
 * Solution can be expanded to include facial recognition with multiple users in the field of vision
      - Applicable to in-person learning in lecture theatres/ classrooms
 
-## Authors
-Who are the authors?
+## 🖊️ Authors
+* Lee Juin [@Neo-Zenith](https://github.com/Neo-Zenith)
+* Daniel Tan Teck Wee [@DanielTanTWOfficial](https://github.com/DanielTanTWOfficial)
+* Ng Woon Yee [@woonyee28](https://github.com/woonyee28)
+* Lee Ci Hui [@perfectsquare123](https://github.com/DanielTanTWOfficial)
+* Weng Pei He [@wph12](https://github.com/wph12)
+* Bernice Koh Jun Yan [@bernicekjy](https://github.com/bernicekjy)
 
-## Acknowledgements
-Credits
+## ⭐ Acknowledgements
+* This project uses Django which is licensed under [BSD-3 license](https://github.com/django/django/blob/main/LICENSE) for all backend programming logic and frontend template rendering. 
+* This project uses Charts.js which is licensed under [MIT license](https://github.com/chartjs/Chart.js/blob/master/LICENSE.md) for the visual display of charts on frontend.
+* This project uses OpenCV which is licensed under [Apache 2 license](https://github.com/opencv/opencv/blob/4.x/LICENSE) for the machine learning logic.
 
-## Reference
+## 📖 Reference
 Below are some links that we have used as references throughout the project:
 * https://iblnews.org/a-survey-shows-that-many-college-students-struggle-to-maintain-focus-and-discipline-in-distance-learning/
 * https://pyimagesearch.com/2017/04/24/eye-blink-detection-opencv-python-dlib/
-* 
