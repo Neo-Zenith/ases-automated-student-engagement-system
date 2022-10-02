@@ -43,6 +43,23 @@ class User (models.Model):
 
         return mega_list
     
+    def queryGroupEngagedStatus(course, group, module):
+        mega_list = {}
+
+        query_set = User.objects.queryFilter(course=course, group=group, module=module)
+        id = 0
+        for i in query_set:
+            mega_list[id] = {}
+            mega_list[id]['course'] = i.course
+            mega_list[id]['module'] = i.module
+            mega_list[id]['group'] = i.group
+            converted_engaged_status = User.flattenFrames(i.engaged_status.strip('][').split(', '), i.fps)
+            mega_list[id]['engaged_status'] = converted_engaged_status
+            mega_list[id]['duration'] = i.time
+            mega_list[id]['session'] = i.session
+            id += 1
+        return mega_list
+
     @staticmethod
     def flattenFrames(data, fps): #input: data of frames, fps; output: engagement score in seconds
         dict = {'Time':[], 'Status':[]}
