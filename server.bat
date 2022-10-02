@@ -1,0 +1,1 @@
+powershell -noexit "& "".\server.ps1"""
