@@ -8,9 +8,7 @@ echo.
 echo.
 echo.
 
-powershell virtualenv venv
-powershell venv/scripts/activate
-pip install -r requirements.txt
+powershell -noexit "& "".\setup.ps1"""
 
 echo Success. You may now exit.
 @pause
