@@ -1,5 +1,8 @@
 from unittest.util import _MAX_LENGTH
 from django.db import models
+import itertools
+import seaborn as sb
+import matplotlib.pyplot as plt
 
 # Create your models here.
 class UserManager(models.Manager):
@@ -90,3 +93,26 @@ class User (models.Model):
                 statuscount = 0
         
         return engagementscore
+
+    @staticmethod
+    def addArrayElementWise(x,y):
+        zipped = itertools.zip_longest(x,y,fillvalue=0)
+        return [sum(x) for x in list(zipped)]
+
+    @staticmethod
+    def plotCourseGraph(listOfEngagementScores, course): #input is list of engagementscores and course(string)
+        res = []
+        for i in listOfEngagementScores:
+            res = addArrayElementWise(res,i)
+        
+        f = plt.figure(figsize=(9, 7))
+        plt.title("Student Engagement during " + course)
+        g1 = sb.lineplot(data = res)
+        g1.set(xticklabels = [])
+        g1.set(yticklabels = [])
+        plt.ylabel("Engagement")
+        plt.xlabel("Time")
+        
+        plt.savefig(course+".png")
+        #plt.show
+    
