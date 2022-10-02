@@ -1,4 +1,4 @@
-# Automated Student Engagement System (aSES)
+# Project aSES<sup>TM</sup>: Automated Student Engagement System 
 ![ases-banner](https://user-images.githubusercontent.com/77436548/193458047-a42b20fd-16f5-45e3-8d0c-4aa80e502cd8.gif)
 
 ## 🗺️ Background
