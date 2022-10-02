@@ -97,6 +97,11 @@ Receive information regarding student engagement via `Automated Student Engageme
 * Solution can be expanded to include facial recognition with multiple users in the field of vision
      - Applicable to in-person learning in lecture theatres/ classrooms
 
+## 💼 Business Impact
+Our project is built entirely on open-source libraries, frameworks, and languages. The most common benefit of open source software is cost saving; it implies that we are not obligated to pay for the use of software, making our project's overall budget cost extremely low. The quality of open-source projects is high, too, because the community is constantly improving the software. To inherit the excellent trait of an open-source project, we have decided to release our project as open source to allow other people to build on top of our project and constantly improve it until one day we receive enough funding from angel investors. After receiving the grant, we will turn the project into private, hire sophisticated software programmers to improve on top of the base, then release the product on a subscription basis for the general public. 
+
+As a student, we solve problems in our daily lives, so we came up with the idea of tracking the engagement status of students in class. With aSES, we allow the professor to receive student engagement reports so that they will get feedback on the number of time students spent disengaged. However, on second thought, we think our project will benefit the student community and the general public. For example, detecting the engagement status of a bus driver on a long ride to ensures the passenger's safety. 
+
 ## 🖊️ Authors
 * Lee Juin [@Neo-Zenith](https://github.com/Neo-Zenith)
 * Daniel Tan Teck Wee [@DanielTanTWOfficial](https://github.com/DanielTanTWOfficial)
