@@ -25,7 +25,7 @@ def main():
 
     fps = getFPS()                      # get the frames per second of the video device
     EYE_AR_THRESH = 1                   # threshold for which the eye aspect ratio is counted as disengaged
-    EYE_AR_CONSEC_FRAMES = 5 * fps      # number of consecutive frames before user is counted as disengaged
+    EYE_AR_CONSEC_FRAMES = 2 * fps      # number of consecutive frames before user is counted as disengaged
 
     # counter counts the number of consecutive frames not meeting EAR threshold
     # counter resets to 0 when current fram meets EAR threshold
@@ -94,7 +94,7 @@ def main():
                     _counter -= 1
                 else:
                     # calibrated the user specific EAR threshold 
-                    EYE_AR_THRESH = _sum / int(10 * fps) * 0.6
+                    EYE_AR_THRESH = _sum / int(5 * fps) * 0.9
                     start = int(time.time())
             
             # only run this section once calibration completes
@@ -223,7 +223,7 @@ def eye_aspect_ratio(eye):
 
 
 html_string = """
-<h1> Welcome to Engageder </h1>
+<h1> Welcome to aSES </h1>
 """
 st.markdown(html_string, unsafe_allow_html=True)
 name = st.text_input("Name: ")
