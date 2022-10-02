@@ -50,7 +50,7 @@ Comparing to **traditional image processing method** which is *complex* and requ
 * Eyes open:  $\text{EAR} \approx \text{constant}$ <br>
 Eyes closed: $\text{EAR} = 0$
 * For the first 5 seconds, we calibrate the average of EAR of the student.
-* Sets a threshold of `90%` of average EAR to signify closed eyes.
+* Sets a threshold of **90%** of average EAR to signify closed eyes.
 
 
 ## 👨‍🎓 How It Woks for Students
@@ -74,7 +74,6 @@ Receive information regarding student engagement via `Automated Student Engageme
 
 
 ## 🚫 Challenges
-What are the challenges we faced when developing the solution?
 * Cloud-based database is not free for this Hackathon.
 * Public datasets specific to our project's aim is not accessible due to privacy concerns.
 
