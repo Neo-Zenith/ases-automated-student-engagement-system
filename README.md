@@ -57,7 +57,7 @@ Eyes closed: $\text{EAR} = 0$
 * Professor-side interface is built using Django's template engine.
 
 ## 👨‍🎓 How It Works for Students
-Key in relevent info via `Welcome to aSES` page, the system can be run on the students devices via USB/webcame/Raspberry Pi camera and track their engagements during online classes.
+Key in relevant info via `Welcome to aSES` page, the system can be run on the students devices via USB/webcame/Raspberry Pi camera and track their engagements during online classes.
 ![image](https://user-images.githubusercontent.com/77436548/193457711-940e7038-0d65-4e12-aff4-63327be6cf06.png)
 * The videos are not being recorded, only data such as `Engagement of student` in binary form will be saved into database
 * After class, the results will be uploaded to cloud database.
