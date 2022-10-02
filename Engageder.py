@@ -11,7 +11,7 @@ import cv2
 import streamlit as st
 import requests
 
-global name, course, group, module, duration
+global name, course, group, module, duration, matric_id
 
 
 def main():
@@ -176,7 +176,7 @@ def main():
         # check if time is up
         if int(time.time()) - start == duration * 60:
             # send a POST request to server to update data
-            post(name, course, engaged_status, duration * 60, fps, module, group)
+            post(name, course, engaged_status, duration * 60, fps, module, group, matric_id)
             break
 
     # cleaning up
@@ -198,9 +198,10 @@ def getFPS():
     return float(num_frames / seconds)
 
 
-def post(name, course, engaged_status, time, fps, module, group):
+def post(name, course, engaged_status, time, fps, module, group, matric_id):
     json = {
         "name": name,
+        "matric_id": matric_id,
         "course": course,
         "module": module,
         "group": group,
@@ -226,6 +227,7 @@ html_string = """
 """
 st.markdown(html_string, unsafe_allow_html=True)
 name = st.text_input("Name: ")
+matric_id = st.text_input("Matric no: ")
 course = st.text_input("Course: ")
 group = st.text_input("Group: ")
 module = st.text_input("Module: ")

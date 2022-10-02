@@ -19,6 +19,7 @@ class User (models.Model):
     course = models.CharField(max_length=50)
     engaged_status = models.CharField(max_length=1000000)
     time = models.IntegerField()
+    matric_id = models.CharField(max_length=10)
     fps = models.CharField(max_length=1000)
     session = models.DateTimeField(auto_now=True)
 
@@ -26,24 +27,23 @@ class User (models.Model):
         self.save()
 
     @staticmethod
-    def queryEngagedStatus(course, group, module, name):
+    def queryEngagedStatus(course, group, module, matric_id):
         mega_list = {}
 
-        query_set = User.objects.queryFilter(course=course, group=group, module=module, name=name)
+        query_set = User.objects.queryFilter(course=course, group=group, module=module, matric_id=matric_id)
         id = 0
         for i in query_set:
             mega_list[id] = {}
             mega_list[id]['name'] = i.name
+            mega_list[id]['matric_id'] = i.matric_id
             mega_list[id]['course'] = i.course
             mega_list[id]['module'] = i.module
             mega_list[id]['group'] = i.group
             converted_engaged_status = User.flattenFrames(i.engaged_status.strip('][').split(', '), i.fps)
             mega_list[id]['engaged_status'] = converted_engaged_status
             mega_list[id]['duration'] = i.time
-            mega_list[id]['session'] = i.session
             id += 1
             
-
         return mega_list
     
     def queryGroupEngagedStatus(course, group, module):
@@ -59,7 +59,6 @@ class User (models.Model):
             converted_engaged_status = User.flattenFrames(i.engaged_status.strip('][').split(', '), i.fps)
             mega_list[id]['engaged_status'] = converted_engaged_status
             mega_list[id]['duration'] = i.time
-            mega_list[id]['session'] = i.session
             id += 1
         return mega_list
 
@@ -78,7 +77,6 @@ class User (models.Model):
         statuscount = 0
         
         for i in range(0, len(dict['Time'])):
-            print(engagementscore)
             if dict['Time'][i] < second: 
                 counter += 1
                 if dict['Status'][i] == '1':
@@ -100,19 +98,22 @@ class User (models.Model):
         return [sum(x) for x in list(zipped)]
 
     @staticmethod
-    def plotCourseGraph(listOfEngagementScores, module): #input is list of engagementscores and course(string)
+    def getSumEngagedStatus(listOfEngagementScores): #input is list of engagementscores and course(string)
         res = []
         for i in listOfEngagementScores:
             res = User.addArrayElementWise(res,i)
+
+        return res
         
-        f = plt.figure(figsize=(9, 7))
-        plt.title("Student Engagement during " + module)
-        g1 = sb.lineplot(data = res)
-        g1.set(xticklabels = [])
-        g1.set(yticklabels = [])
-        plt.ylabel("Engagement")
-        plt.xlabel("Time")
+        # f = plt.figure(figsize=(9, 7))
+        # plt.title("Student Engagement during %s (Group %s)" % (module, group))
+        # g1 = sb.lineplot(data = res)
+        # g1.set(xticklabels = [])
+        # g1.set(yticklabels = [])
+        # plt.ylabel("Engagement")
+        # plt.xlabel("Time")
         
-        plt.savefig("./static/graphs/"+module+".jpg")
+        # plt.savefig("media/%s-%s.png" %(module, group))
         #plt.show
+
     

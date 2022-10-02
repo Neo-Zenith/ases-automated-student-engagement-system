@@ -1,6 +1,75 @@
-<h1>{{status}}</h1>
+<div>
+    {{group_status}}
+    <canvas id="myChart" style="max-width:1000px;max-height:500px;"></canvas>
+</div>
 
-{% load static %}
-<img src="{% static "graphs/SC2006.jpg" %}" alt="Nohoo">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const time = "{{group_status.duration}}"
+    const array = "{{group_status.engaged_status}}"
+    const matric_id = "{{group_status.matric_id}}"
+    const dataset = JSON.parse("[" + array + "]");
 
+    const _max = Math.max.apply(Math, dataset[0])
+    console.log(_max)
 
+    var title = ""
+    if (matric_id == "") 
+    {
+        title = "Student Engagement Level during {{group_status.module}} (Group {{group_status.group}})" 
+    }
+    else
+    {
+        title = "{{group_status.matric_id}} Engagement Level during {{group_status.module}} (Group {{group_status.group}})" 
+    }
+        
+    const labels = new Array()
+    for (i = 0; i < time; i ++)
+    {
+        labels[i] = i
+    }
+    
+    const data = {
+      labels: labels,
+      datasets: [{
+        label: title,
+        backgroundColor: 'rgb(255, 99, 132)',
+        borderColor: 'rgb(255, 99, 132)',
+        data: dataset[0],
+      }]
+    };
+  
+    const config = {
+        type: 'line',
+        data: data,
+        options: {
+            scales: {
+                y: {
+                    min: 0,
+                    max: _max,
+                    ticks: {
+
+                        stepSize: 1
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    display: true,
+                    
+                    labels: {
+                        color: 'rgb(100, 99, 132)',
+                        
+                    }
+                }
+        }
+        }
+    };
+</script>
+
+<script>
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+</script>
