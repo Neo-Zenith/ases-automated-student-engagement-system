@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from server.template.index import index
 from server.template.index import returngraph
+from django.conf import settings
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('',index,name="home"),
@@ -24,3 +26,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include("api.urls")),
 ]
+urlpatterns += staticfiles_urlpatterns()
+

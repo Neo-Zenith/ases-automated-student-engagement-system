@@ -17,5 +17,9 @@ def returngraph(request):
         group = int(group)
     # status = User.queryGroupEngagedStatus(course, group, module)
     status = User.queryGroupEngagedStatus(course, group, module)
+    j=0
+    for i in status:
+        User.plotCourseGraph([status[j]['engaged_status']], module)
+        j+=1
 
-    return render(request, "./views/ReturnGraph.html", {'status': status})
+    return render(request, "./views/ReturnGraph.html", {'status': status, "course": status[0]['module']})

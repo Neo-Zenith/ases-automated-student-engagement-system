@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -52,6 +51,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'server.urls'
+
+import os.path
+STATIC_ROOT = ''
+STATIC_URL = '/static/'
+STATICFILES_DIRS = ( os.path.join('static'), )
 
 TEMPLATES = [
     {

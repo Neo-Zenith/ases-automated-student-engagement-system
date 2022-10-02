@@ -100,19 +100,19 @@ class User (models.Model):
         return [sum(x) for x in list(zipped)]
 
     @staticmethod
-    def plotCourseGraph(listOfEngagementScores, course): #input is list of engagementscores and course(string)
+    def plotCourseGraph(listOfEngagementScores, module): #input is list of engagementscores and course(string)
         res = []
         for i in listOfEngagementScores:
-            res = addArrayElementWise(res,i)
+            res = User.addArrayElementWise(res,i)
         
         f = plt.figure(figsize=(9, 7))
-        plt.title("Student Engagement during " + course)
+        plt.title("Student Engagement during " + module)
         g1 = sb.lineplot(data = res)
         g1.set(xticklabels = [])
         g1.set(yticklabels = [])
         plt.ylabel("Engagement")
         plt.xlabel("Time")
         
-        plt.savefig(course+".png")
+        plt.savefig("./static/graphs/"+module+".jpg")
         #plt.show
     
