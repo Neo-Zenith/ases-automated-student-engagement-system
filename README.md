@@ -23,8 +23,11 @@ How might we harness AI to help teachers determine the level of engagement of st
 ## Solution
 What is the AI-based solution we are offering?
 <pre>
-A computer vision based system that tracks students level of engagement in real-time during an online class session.
+A Computer-Vision-based-system that tracks and generates report on students level of engagement 
+in real-time during online class sessions.
 </pre>
+Comparing to the **traditional image processing method** which is *complex* and required certain combinations of models trainings, our solution using `Eye Aspect Ratio (EAR)` is much more *elegant,efficient and easy to implement* as it just requires simple calculation based on the ratio of distances between Facial Landmarks of eyes.
+
 
 ## Technology of Our Solution
 What is the underlying technology behind our solution?
@@ -39,26 +42,28 @@ What is the underlying technology behind our solution?
 >   **(B) Calculation of Eye Aspect Ratio (EAR):** <br>
 >   * The 2D facial landmark locations of each eye is represented by 6 $(x,y)$-coordinates starting from the left-corner of eyes (from the perspective of 3rd party), and ploting it clockwise evenly for the remaining region.
 >   * **The Eye Aspect Ratio (EAR) equation:**
->   $$EAR = \frac{\parallel{p_2-p_6}\parallel + \parallel{p_3-p_5}\parallel}{2||p_1-p_4||}$$
->       * **Numerator:** Distance between the vertical eye landmarks
->         **Denominator:** Distance between the horizontal eye landmarks
+>   $$EAR = \frac{\parallel{p_2-p_6}\parallel + \parallel{p_3-p_5}\parallel}{2\parallel{p_1-p_4}\parallel}$$
+>       * **Numerator:** Distance between the vertical eye landmarks <br>
+>         **Denominator:** Distance between the horizontal eye landmarks <br>
 >           (tiwce the Denominator because there is only one set of horizontal points but two sets of vertical points)
->   * Eyes open:  $\text{EAR} \approx \text{constant}$ <br>
->     Eyes closed: $\text{EAR} = 0$
+>   * Eyes open:    $\text{EAR} \approx \text{constant}$ <br>
+>     Eyes closed:  $\text{EAR} = 0$
 >   * For the first 5 seconds, we calibrate the average of EAR of the student.
->   * Sets a threshold of `60%` of average EAR to signify closed eyes.
+>   * Sets a threshold of `90%` of average EAR to signify closed eyes.
 
 
 ## How It Woks
 How does our solution work?
->   * Based on Eye Aspect Ratio measurement and face detection <br>
->       <sub> The student is categorised as engaged or disengaged based on their eye movements </sub>
->       >   `Disengaged` => when the student’s face is undetected OR their eyes are closed/ partially closed for a fixed period of time
+>   **Student:** 
+>   * Key in relevent info via [Welcome to aSES](https://github.com/Neo-Zenith/MLDA-Deep-Learning-Week/blob/main/client.ps1) page, the system will run on the students devices via USB/webcam/Raspberry Pi camera and track their engagements during online classes. <br>
+>       <sub> ( ```diff - **Disclaimer:** ``` The videos are not being recorded, only data such as *"Engagement of student"* in binary form will be saved into database) </sub> <br>
+>   * After class, the results will be uploaded to cloud database.
+>   
+>   **Based on Eye Aspect Ratio measurement and face detection:** <br>
+>   * Every *second*, the student is categorised as engaged (recorded as binary $1$) or disengaged (recorded as binary $0$) based on their eye movements </sub>
+>       >   `Disengaged` => When the student’s face is undetected OR their eyes are closed/ partially closed for a fixed period of time. (ie. 2 seconds)
 >
->   * **Student:** Key in relevent info via `Welcome to aSES` page, the system can be run on the students devices during online classes. <br>
->       <sub> * (The videos are not being recorded, only data such as `Engagement of student` in binary form will be saved into database) </sub>
->
->   * **Teachers:** Receive information regarding student engagement via `Automated Student Engagement System (aSES)` , where they get feedback on the amount of time students spent disengaged and the engagement level over time in the form of a graph.
+>   **Teachers:** Receive information regarding student engagement via `Automated Student Engagement System (aSES)` , where they get feedback on the amount of time students spent disengaged and the engagement level over time in the form of a graph.
 
 
 ## Challenges
