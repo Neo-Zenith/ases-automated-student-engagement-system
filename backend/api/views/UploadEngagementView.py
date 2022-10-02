@@ -17,11 +17,12 @@ class UploadEngagementView(APIView):
             course = request.data.get('course')
             engaged_status = request.data.get('engaged_status')
             time = request.data.get('time')
+            matric_id = request.data.get('matric_id')
             fps = request.data.get('fps')
             module = request.data.get('module')
             group = request.data.get('group')
 
-            user = User(name=name, course=course, engaged_status=engaged_status, time=time, fps=fps, module=module, group=group)
+            user = User(name=name, course=course, engaged_status=engaged_status, time=time, fps=fps, module=module, group=group, matric_id=matric_id)
             user.register()
             payload = {"error": "OK"}
             return Response(payload)
