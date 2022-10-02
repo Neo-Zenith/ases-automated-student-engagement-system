@@ -16,39 +16,47 @@
 
 ## Problem Statement
 What is the problem we are trying to solve?
-```
-***How might we harness AI to help teachers determine the level of engagement of students in online learning?***
-```
+<pre>
+How might we harness AI to help teachers determine the level of engagement of students in online learning?
+</pre>
 
 ## Solution
 What is the AI-based solution we are offering?
-```
+<pre>
 A computer vision based system that tracks students level of engagement in real-time during an online class session.
-```
+</pre>
 
 ## Technology of Our Solution
 What is the underlying technology behind our solution?
->   **Method:**
+>   **(A) Method:**
 >   * [OpenCV](https://opencv.org/) with [dlib](https://pypi.org/project/dlib/) in Python
 >   * Detect face using "HOG-based" face detector from [dlib](https://pypi.org/project/dlib/)
 >   * Predict Facial Landmarks using [dlib](https://pypi.org/project/dlib/) and obtain Facial Landmarks index for both eyes using module `face_utils`
 >   * Live video streamming through USB/webcam/Raspberry Pi camera using module `VideoStream` in library [imutils](https://pypi.org/project/imutils/)
 >
->   **Note:** Due to shortage of dataset 
+>   **Note:** Due to shortage of dataset and time, we use pre-trained model in [dlib](https://pypi.org/project/dlib/) and [imutils](https://pypi.org/project/imutils/) to detect face and predict Facial Landmarks.
 >
->   **Calculate the average Eye Aspect Ratio (EAR) of each student:**
->   <sub> Sets a threshold of `60%` of *average EAR* to signify closed eyes </sub>
->   $$EAR = \frac{\|p_2-p_6\| + \|p_3-p_5\|}{2\|p_1-p_4\|}$$
+>   **(B) Calculation of Eye Aspect Ratio (EAR):** <br>
+>   * The 2D facial landmark locations of each eye is represented by 6 $(x,y)$-coordinates starting from the left-corner of eyes (from the perspective of 3rd party), and ploting it clockwise evenly for the remaining region.
+>   * **The Eye Aspect Ratio (EAR) equation:**
+>   $$EAR = \frac{\parallel{p_2-p_6}\parallel + \parallel{p_3-p_5}\parallel}{2||p_1-p_4||}$$
+>       * **Numerator:** Distance between the vertical eye landmarks
+>         **Denominator:** Distance between the horizontal eye landmarks
+>           (tiwce the Denominator because there is only one set of horizontal points but two sets of vertical points)
+>   * Eyes open:  $\text{EAR} \approx \text{constant}$ <br>
+>     Eyes closed: $\text{EAR} = 0$
+>   * For the first 5 seconds, we calibrate the average of EAR of the student.
+>   * Sets a threshold of `60%` of average EAR to signify closed eyes.
 
 
 ## How It Woks
 How does our solution work?
->   * Based on Eye Aspect Ratio measurement and face detection 
+>   * Based on Eye Aspect Ratio measurement and face detection <br>
 >       <sub> The student is categorised as engaged or disengaged based on their eye movements </sub>
 >       >   `Disengaged` => when the student’s face is undetected OR their eyes are closed/ partially closed for a fixed period of time
 >
->   * **Student:** Key in relevent info via `Welcome to aSES` page, the system can be run on the students devices during online classes. 
->       <sub> *(The videos are not being recorded, only data such as `Engagement of student` in binary form will be saved into database) </sub>
+>   * **Student:** Key in relevent info via `Welcome to aSES` page, the system can be run on the students devices during online classes. <br>
+>       <sub> * (The videos are not being recorded, only data such as `Engagement of student` in binary form will be saved into database) </sub>
 >
 >   * **Teachers:** Receive information regarding student engagement via `Automated Student Engagement System (aSES)` , where they get feedback on the amount of time students spent disengaged and the engagement level over time in the form of a graph.
 
