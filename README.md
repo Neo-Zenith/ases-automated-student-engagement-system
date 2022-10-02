@@ -116,7 +116,7 @@ As a student, we solve problems in our daily lives, so we came up with the idea 
 Below are some links that we have used as references throughout the project:
 * https://iblnews.org/a-survey-shows-that-many-college-students-struggle-to-maintain-focus-and-discipline-in-distance-learning/
 * https://pyimagesearch.com/2017/04/24/eye-blink-detection-opencv-python-dlib/
-
+* http://vision.fe.uni-lj.si/cvww2016/proceedings/papers/05.pdf
 <hr />
 
 ## 💥 How to Use
