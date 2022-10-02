@@ -69,7 +69,7 @@ Key in relevent info via `Welcome to aSES` page, the system can be run on the st
     * `Disengaged` —— when the student’s face is undetected OR their eyes are closed/ partially closed for a fixed period of time (2 seconds).
     ![image](https://user-images.githubusercontent.com/77436548/193460299-2d887644-c463-4606-b676-c9ec7506021a.png)
 
-## 👨‍🏫 How It Woks for Professor
+## 👨‍🏫 How It Works for Professor
 Receive information regarding student engagement via `Automated Student Engagement System (aSES)` , where they get feedback on the amount of time students spent disengaged and the engagement level over time by querying their names, course, module, group.
 * Category:
     * Individual student (by querying the student's matriculation number)
